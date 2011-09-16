@@ -18,7 +18,12 @@ fi
 
 RULES_FILE='/etc/udev/rules.d/65-devname.rules'
 
-. /lib/udev/rule_generator.functions
+if test ! -e /lib/udev/rule_generator.functions -a \
+-e /lib/udev/hotplug.functions; then
+	. /lib/udev/hotplug.functions
+else
+	. /lib/udev/rule_generator.functions
+fi
 
 interface_name_taken() {
 	local value="$(find_all_rules 'NAME=' $INTERFACE "")"
@@ -61,7 +66,7 @@ match="ENV{ID_PATH}==\"$MATCHPATH\""
 	# See if a rule using the current name already exists
 	if interface_name_taken; then
 		echo "$INTERFACE: Name already assigned" >&2
-		return 1
+		exit 1
 	fi
 
 write_rule "$match" "$INTERFACE"
