@@ -4,11 +4,8 @@ pkgrel=0
 arch=any
 pkgdesc="Generic persistent device naming"
 depends=("udev>=162")
-source=(devname 60-path.rules)
-md5sums=(
-  2df0356c9944390faae299329eee8ffe
-  cdba66422a73131fbc724849536385fb
-)
+source=(devname)
+md5sums=(bed11cce4d9455ae8b70a493c24932e0)
 
 source+=(http://ftp.kernel.org/pub/linux/utils/kernel/hotplug/udev-182.tar.xz)
 md5sums+=(023877e6cc0d907994b8c648beab542b)
