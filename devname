@@ -52,7 +52,8 @@ write_rule() {
 
 DEV="$1"
 INTERFACE="$2"
-MATCHPATH="$(/lib/udev/path_id "$DEV" | sed -n 's/^ID_PATH=//p')"
+PATH_ID="udevadm test-builtin path_id"
+MATCHPATH="$($PATH_ID "$DEV" | sed -n 's/^ID_PATH=//p')"
 
 # Prevent concurrent processes from modifying the file at the same time.
 trap "unlock_rules_file" EXIT
