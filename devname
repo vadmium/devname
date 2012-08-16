@@ -51,9 +51,19 @@ write_rule() {
 }
 
 DEV="$1"
-INTERFACE="$2"
 PATH_ID="udevadm test-builtin path_id"
-MATCHPATH="$($PATH_ID "$DEV" | sed -n 's/^ID_PATH=//p')"
+MATCHPATH="$($PATH_ID "$DEV")"
+MATCHPATH="$(sed -n 's/^ID_PATH=//p' << INPUT
+$MATCHPATH
+INPUT
+)"
+
+if test -z "${2+set}"; then
+	printf '%s\n' "$MATCHPATH"
+	exit 0
+fi
+
+INTERFACE="$2"
 
 # Prevent concurrent processes from modifying the file at the same time.
 trap "unlock_rules_file" EXIT
