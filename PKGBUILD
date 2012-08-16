@@ -4,11 +4,10 @@ pkgrel=0
 arch=any
 pkgdesc="Generic persistent device naming"
 depends=("udev>=162")
-source=(devname 60-path.rules full-path.diff)
+source=(devname 60-path.rules)
 md5sums=(
   2df0356c9944390faae299329eee8ffe
   cdba66422a73131fbc724849536385fb
-  2c62bf649cacc476d7d21c27a89a9f54
 )
 
 package() {
