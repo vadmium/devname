@@ -6,7 +6,7 @@ pkgdesc="Generic persistent device naming"
 depends=("udev>=162")
 source=(devname 60-path.rules full-path.diff)
 md5sums=(
-  9e261cc5f9c78807bfc1a324d56287ad
+  2df0356c9944390faae299329eee8ffe
   cdba66422a73131fbc724849536385fb
   2c62bf649cacc476d7d21c27a89a9f54
 )
